@@ -30,19 +30,21 @@
 
     $("countdown-label").textContent = data.countdown.label;
 
+    $("venue-title").textContent = venue.title || "Место проведения";
     $("venue-name").textContent = venue.name;
     $("venue-address").textContent = venue.address;
-    $("venue-note").textContent = venue.note;
+    $("venue-note").textContent = venue.note || "";
+    $("venue-note").hidden = !venue.note;
 
     const mapsLink = $("venue-maps");
     mapsLink.href = venue.mapsUrl;
-    mapsLink.textContent = venue.mapsButton;
+    $("venue-maps-text").textContent = venue.mapsButton;
 
     $("schedule-title").textContent = schedule.title;
     $("schedule-list").replaceChildren(
       ...schedule.items.map((item) => {
         const li = document.createElement("li");
-        li.className = "schedule__item reveal";
+        li.className = "card schedule__item reveal";
         const description = item.description || item.note || "";
         li.innerHTML = `
           <time class="schedule__time" datetime="${toDatetime(item.time)}">${escapeHtml(item.time)}</time>
@@ -59,7 +61,7 @@
     $("wishes-list").replaceChildren(
       ...wishes.items.map((item) => {
         const article = document.createElement("article");
-        article.className = "wishes__item reveal";
+        article.className = "card wishes__item reveal";
         article.innerHTML = `
           <h3 class="wishes__heading">${escapeHtml(item.heading)}</h3>
           <p class="wishes__text">${escapeHtml(item.text)}</p>
@@ -86,30 +88,32 @@
 
   function setupVenueImage(venue) {
     const img = $("venue-image");
-    const wrap = $("venue-image-wrap");
-    const placeholder = $("venue-placeholder");
+    const fallback = $("venue-icon-fallback");
+    const icon = $("venue-icon");
 
     img.alt = venue.name;
 
-    const showPlaceholder = () => {
+    const showFallback = () => {
       img.hidden = true;
-      placeholder.hidden = false;
-      wrap.classList.remove("venue__image-wrap--loaded");
+      fallback.hidden = false;
+      fallback.style.display = "";
+      icon.classList.remove("venue__icon--photo");
     };
 
-    const showImage = () => {
+    const showPhoto = () => {
       img.hidden = false;
-      placeholder.hidden = true;
-      wrap.classList.add("venue__image-wrap--loaded");
+      fallback.hidden = true;
+      fallback.style.display = "none";
+      icon.classList.add("venue__icon--photo");
     };
 
-    img.addEventListener("load", showImage);
-    img.addEventListener("error", showPlaceholder);
+    img.addEventListener("load", showPhoto);
+    img.addEventListener("error", showFallback);
 
     if (venue.image) {
       img.src = venue.image;
     } else {
-      showPlaceholder();
+      showFallback();
     }
   }
 
@@ -152,7 +156,7 @@
           }
         });
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.1 }
+      { rootMargin: "0px 0px -6% 0px", threshold: 0.08 }
     );
 
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));

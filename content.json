@@ -12,12 +12,13 @@
     "target": "2026-08-03T15:30:00+03:00"
   },
   "venue": {
+    "title": "Место проведения",
     "name": "Усадьба Royal Hall",
     "address": "д. Чуденичи, Лесная ул., 2А",
     "note": "Весь день мы проведём на одной площадке",
     "image": "assets/venue.jpg",
     "mapsUrl": "https://yandex.by/maps/-/CDbPYRKA",
-    "mapsButton": "Как добраться"
+    "mapsButton": "Открыть на карте"
   },
   "schedule": {
     "title": "Программа дня",
@@ -66,7 +67,7 @@
     "name": "Организатор",
     "phone": "+375 (00) 000-00-00",
     "phoneHref": "tel:+375000000000",
-    "telegram": "@organizer",
+    "telegram": "Написать в Telegram",
     "telegramUrl": "https://t.me/organizer"
   },
   "footer": {

@@ -8,38 +8,54 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <svg class="svg-sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-pin" viewBox="0 0 24 24">
+        <path
+          d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"
+          fill="currentColor"
+        />
+      </symbol>
+    </svg>
+
     <main class="page">
       <header class="hero section" id="hero">
         <div class="hero__content">
-          <p class="hero__eyebrow reveal">Свадьба</p>
+          <p class="hero__eyebrow label-caps reveal">Свадьба</p>
           <h1 class="hero__names reveal" id="couple-names"></h1>
+          <div class="ornament reveal" aria-hidden="true">
+            <span class="ornament__line"></span>
+            <img class="ornament__img" src="assets/leaf.png" alt="" width="80" height="80" />
+            <span class="ornament__line"></span>
+          </div>
           <p class="hero__tagline reveal" id="hero-tagline"></p>
-          <p class="hero__date reveal" id="hero-date"></p>
+          <p class="hero__date label-caps reveal" id="hero-date"></p>
         </div>
       </header>
 
       <section class="countdown section" id="countdown" aria-label="Обратный отсчёт">
-        <p class="countdown__label reveal" id="countdown-label"></p>
+        <div class="section-head reveal">
+          <h2 class="section-head__title label-caps" id="countdown-label"></h2>
+        </div>
         <div class="countdown__grid reveal" id="countdown-grid" role="timer" aria-live="polite">
-          <div class="countdown__item">
+          <div class="card countdown__item">
             <span class="countdown__value" id="cd-days">—</span>
-            <span class="countdown__unit">дней</span>
+            <span class="countdown__unit">дня</span>
           </div>
-          <div class="countdown__item">
+          <div class="card countdown__item">
             <span class="countdown__value" id="cd-hours">—</span>
             <span class="countdown__unit">часов</span>
           </div>
-          <div class="countdown__item">
+          <div class="card countdown__item">
             <span class="countdown__value" id="cd-minutes">—</span>
             <span class="countdown__unit">минут</span>
           </div>
-          <div class="countdown__item">
+          <div class="card countdown__item">
             <span class="countdown__value" id="cd-seconds">—</span>
             <span class="countdown__unit">секунд</span>
           </div>
@@ -48,37 +64,67 @@
       </section>
 
       <section class="venue section" id="venue" aria-labelledby="venue-title">
-        <h2 class="section__title reveal" id="venue-title">Место</h2>
-        <article class="venue__card reveal">
-          <div class="venue__image-wrap" id="venue-image-wrap">
-            <img class="venue__image" id="venue-image" alt="" width="640" height="400" hidden />
-            <div class="venue__placeholder" id="venue-placeholder" aria-hidden="true"></div>
+        <div class="section-head reveal">
+          <h2 class="section-head__title label-caps" id="venue-title"></h2>
+          <div class="ornament ornament--sm" aria-hidden="true">
+            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
           </div>
-          <div class="venue__body">
+        </div>
+        <article class="card venue__card reveal">
+          <div class="venue__icon" id="venue-icon">
+            <img class="venue__icon-img" id="venue-image" alt="" width="80" height="80" hidden />
+            <img
+              class="venue__icon-fallback"
+              id="venue-icon-fallback"
+              src="assets/leaf.png"
+              alt=""
+              width="40"
+              height="40"
+            />
+          </div>
+          <div class="venue__info">
             <h3 class="venue__name" id="venue-name"></h3>
             <p class="venue__address" id="venue-address"></p>
             <p class="venue__note" id="venue-note"></p>
-            <a class="btn" id="venue-maps" href="#" target="_blank" rel="noopener noreferrer"></a>
+            <a class="btn btn--ghost" id="venue-maps" href="#" target="_blank" rel="noopener noreferrer">
+              <svg class="btn__icon" aria-hidden="true"><use href="#icon-pin"></use></svg>
+              <span id="venue-maps-text"></span>
+            </a>
           </div>
         </article>
       </section>
 
       <section class="schedule section" id="schedule" aria-labelledby="schedule-title">
-        <h2 class="section__title reveal" id="schedule-title"></h2>
+        <div class="section-head reveal">
+          <h2 class="section-head__title label-caps" id="schedule-title"></h2>
+          <div class="ornament ornament--sm" aria-hidden="true">
+            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
+          </div>
+        </div>
         <ol class="schedule__list" id="schedule-list"></ol>
       </section>
 
       <section class="wishes section" id="wishes" aria-labelledby="wishes-title">
-        <h2 class="section__title reveal" id="wishes-title"></h2>
+        <div class="section-head reveal">
+          <h2 class="section-head__title label-caps" id="wishes-title"></h2>
+          <div class="ornament ornament--sm" aria-hidden="true">
+            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
+          </div>
+        </div>
         <div class="wishes__list" id="wishes-list"></div>
       </section>
 
       <section class="organizer section" id="organizer" aria-labelledby="organizer-title">
-        <h2 class="section__title reveal" id="organizer-title"></h2>
-        <div class="organizer__card reveal">
+        <div class="section-head reveal">
+          <h2 class="section-head__title label-caps" id="organizer-title"></h2>
+          <div class="ornament ornament--sm" aria-hidden="true">
+            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
+          </div>
+        </div>
+        <div class="card organizer__card reveal">
           <p class="organizer__name" id="organizer-name"></p>
           <a class="organizer__link" id="organizer-phone" href="#"></a>
-          <a class="organizer__link organizer__link--telegram" id="organizer-telegram" href="#" target="_blank" rel="noopener noreferrer"></a>
+          <a class="btn btn--ghost organizer__telegram" id="organizer-telegram" href="#" target="_blank" rel="noopener noreferrer"></a>
         </div>
       </section>
 
