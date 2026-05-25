@@ -272,7 +272,7 @@ body {
 .venue__card {
   display: flex;
   gap: 1.15rem;
-  align-items: flex-start;
+  align-items: center;
   padding: 1.5rem 1.5rem;
 }
 
@@ -290,6 +290,15 @@ body {
   overflow: hidden;
 }
 
+.venue__icon--photo {
+  width: 8.5rem;
+  height: 8.5rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+
 .venue__icon-fallback {
   width: 2.25rem;
   height: auto;
@@ -298,10 +307,11 @@ body {
 }
 
 .venue__icon-img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 0.2rem;
+  object-position: center;
 }
 
 .venue__icon--photo .venue__icon-fallback {
@@ -335,6 +345,21 @@ body {
   font-size: 1rem;
   font-style: italic;
   color: var(--olive-light);
+}
+
+/* Dress code */
+.dresscode__card {
+  text-align: center;
+  padding: 1.6rem 1.75rem;
+}
+
+.dresscode__text {
+  margin: 0;
+  max-width: 36rem;
+  margin-inline: auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-soft);
 }
 
 /* Buttons */
