@@ -22,7 +22,7 @@
   }
 
   function renderContent(data) {
-    const { couple, hero, venue, schedule, wishes, organizer, footer } = data;
+    const { couple, hero, venue, dressCode, schedule, wishes, organizer, footer } = data;
 
     $("couple-names").textContent = `${couple.name1} и ${couple.name2}`;
     $("hero-tagline").textContent = hero.tagline;
@@ -39,6 +39,9 @@
     const mapsLink = $("venue-maps");
     mapsLink.href = venue.mapsUrl;
     $("venue-maps-text").textContent = venue.mapsButton;
+
+    $("dresscode-title").textContent = dressCode.title || "Дресс-код";
+    $("dresscode-text").textContent = dressCode.text;
 
     $("schedule-title").textContent = schedule.title;
 
