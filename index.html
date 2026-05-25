@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -95,13 +95,15 @@
       </section>
 
       <section class="schedule section" id="schedule" aria-labelledby="schedule-title">
-        <div class="section-head reveal">
-          <h2 class="section-head__title label-caps" id="schedule-title"></h2>
-          <div class="ornament ornament--sm" aria-hidden="true">
-            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
-          </div>
+        <header class="schedule__header reveal">
+          <h2 class="schedule__heading" id="schedule-title"></h2>
+          <p class="schedule__subtitle" id="schedule-subtitle"></p>
+        </header>
+        <div class="schedule__timeline reveal">
+          <span class="schedule__line" aria-hidden="true"></span>
+          <ol class="schedule__list" id="schedule-list"></ol>
+          <span class="schedule__line" aria-hidden="true"></span>
         </div>
-        <ol class="schedule__list" id="schedule-list"></ol>
       </section>
 
       <section class="wishes section" id="wishes" aria-labelledby="wishes-title">
@@ -133,6 +135,6 @@
       </footer>
     </main>
 
-    <script src="script.js" defer></script>
+    <script src="script.js?v=3" defer></script>
   </body>
 </html>

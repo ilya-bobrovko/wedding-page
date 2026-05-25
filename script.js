@@ -14,7 +14,7 @@
   }
 
   async function loadContent() {
-    const response = await fetch("content.json");
+    const response = await fetch("content.json", { cache: "no-store" });
     if (!response.ok) {
       throw new Error("Не удалось загрузить content.json");
     }
@@ -41,17 +41,25 @@
     $("venue-maps-text").textContent = venue.mapsButton;
 
     $("schedule-title").textContent = schedule.title;
+
+    const subtitleEl = $("schedule-subtitle");
+    if (schedule.subtitle) {
+      subtitleEl.textContent = schedule.subtitle;
+      subtitleEl.hidden = false;
+    } else {
+      subtitleEl.hidden = true;
+    }
+
     $("schedule-list").replaceChildren(
       ...schedule.items.map((item) => {
         const li = document.createElement("li");
-        li.className = "card schedule__item reveal";
-        const description = item.description || item.note || "";
+        li.className = "schedule__item";
+        const label = item.title
+          ? `<p class="schedule__label">${escapeHtml(item.title)}</p>`
+          : "";
         li.innerHTML = `
           <time class="schedule__time" datetime="${toDatetime(item.time)}">${escapeHtml(item.time)}</time>
-          <div class="schedule__body">
-            <h3 class="schedule__title">${escapeHtml(item.title)}</h3>
-            ${description ? `<p class="schedule__description">${escapeHtml(description)}</p>` : ""}
-          </div>
+          ${label}
         `;
         return li;
       })
