@@ -492,29 +492,6 @@ body {
   text-align: center;
 }
 
-.schedule__header {
-  margin-bottom: 3.5rem;
-}
-
-.schedule__heading {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 7vw, 3.25rem);
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--timing);
-}
-
-.schedule__subtitle {
-  margin: 0.15rem 0 0 1.25rem;
-  font-family: var(--font-script);
-  font-size: clamp(2rem, 6vw, 2.75rem);
-  font-weight: 400;
-  line-height: 1;
-  color: var(--timing);
-}
-
 .schedule__timeline {
   display: flex;
   align-items: center;
@@ -567,6 +544,24 @@ body {
   font-size: clamp(1.05rem, 3vw, 1.35rem);
   line-height: 1.35;
   color: var(--timing);
+}
+
+/* Guest profile */
+.guest-profile__card {
+  text-align: center;
+  padding: clamp(1.8rem, 5vw, 2.5rem) 1.5rem;
+}
+
+.guest-profile__text {
+  max-width: 38rem;
+  margin: 0 auto 1.5rem;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: var(--text-soft);
+}
+
+.guest-profile__button {
+  margin: 0 auto;
 }
 
 @media (max-width: 36rem) {
@@ -629,6 +624,14 @@ body {
 .organizer__card {
   text-align: center;
   padding: 1.6rem 1.5rem;
+}
+
+.organizer__text {
+  max-width: 34rem;
+  margin: 0 auto 1.1rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-soft);
 }
 
 .organizer__name {

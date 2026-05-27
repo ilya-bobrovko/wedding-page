@@ -116,19 +116,34 @@
         </div>
         <div class="card dresscode__card reveal">
           <p class="dresscode__text" id="dresscode-text"></p>
+          <ul class="dresscode__palette" id="dresscode-palette" role="list" aria-label="Цвета палитры"></ul>
         </div>
-        <ul class="dresscode__palette reveal" id="dresscode-palette" role="list" aria-label="Цвета палитры"></ul>
       </section>
 
       <section class="schedule section" id="schedule" aria-labelledby="schedule-title">
-        <header class="schedule__header reveal">
-          <h2 class="schedule__heading" id="schedule-title"></h2>
-          <p class="schedule__subtitle" id="schedule-subtitle"></p>
-        </header>
+        <div class="section-head reveal">
+          <h2 class="section-head__title label-caps" id="schedule-title"></h2>
+          <div class="ornament ornament--sm" aria-hidden="true">
+            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
+          </div>
+        </div>
         <div class="schedule__timeline reveal">
           <span class="schedule__line" aria-hidden="true"></span>
           <ol class="schedule__list" id="schedule-list"></ol>
           <span class="schedule__line" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <section class="guest-profile section" id="guest-profile" aria-labelledby="guest-profile-title">
+        <div class="section-head reveal">
+          <h2 class="section-head__title label-caps" id="guest-profile-title"></h2>
+          <div class="ornament ornament--sm" aria-hidden="true">
+            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
+          </div>
+        </div>
+        <div class="card guest-profile__card reveal">
+          <p class="guest-profile__text" id="guest-profile-text"></p>
+          <a class="btn btn--ghost guest-profile__button" id="guest-profile-button" href="#" target="_blank" rel="noopener noreferrer"></a>
         </div>
       </section>
 
@@ -150,6 +165,7 @@
           </div>
         </div>
         <div class="card organizer__card reveal">
+          <p class="organizer__text" id="organizer-text"></p>
           <p class="organizer__name" id="organizer-name"></p>
           <a class="organizer__link" id="organizer-phone" href="#"></a>
           <a class="btn btn--ghost organizer__telegram" id="organizer-telegram" href="#" target="_blank" rel="noopener noreferrer"></a>
@@ -161,6 +177,6 @@
       </footer>
     </main>
 
-    <script src="script.js?v=7" defer></script>
+    <script src="script.js?v=11" defer></script>
   </body>
 </html>

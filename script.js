@@ -22,7 +22,7 @@
   }
 
   function renderContent(data) {
-    const { couple, hero, venue, details, dressCode, schedule, wishes, organizer, footer } = data;
+    const { couple, hero, venue, details, dressCode, schedule, guestProfile, wishes, organizer, footer } = data;
 
     $("couple-names").textContent = `${couple.name1} и ${couple.name2}`;
     $("hero-tagline").textContent = hero.tagline;
@@ -78,14 +78,6 @@
 
     $("schedule-title").textContent = schedule.title;
 
-    const subtitleEl = $("schedule-subtitle");
-    if (schedule.subtitle) {
-      subtitleEl.textContent = schedule.subtitle;
-      subtitleEl.hidden = false;
-    } else {
-      subtitleEl.hidden = true;
-    }
-
     $("schedule-list").replaceChildren(
       ...schedule.items.map((item) => {
         const li = document.createElement("li");
@@ -101,6 +93,18 @@
       })
     );
 
+    if (guestProfile) {
+      $("guest-profile-title").textContent = guestProfile.title || "Гостевой чат";
+      $("guest-profile-text").textContent = guestProfile.text || "";
+
+      const guestProfileButton = $("guest-profile-button");
+      guestProfileButton.href = guestProfile.chatUrl || "#";
+      guestProfileButton.textContent = guestProfile.button || "Вступить в чат";
+      document.getElementById("guest-profile").hidden = false;
+    } else {
+      document.getElementById("guest-profile").hidden = true;
+    }
+
     $("wishes-title").textContent = wishes.title;
     $("wishes-list").replaceChildren(
       ...wishes.items.map((item) => {
@@ -115,6 +119,8 @@
     );
 
     $("organizer-title").textContent = organizer.title;
+    $("organizer-text").textContent = organizer.text || "";
+    $("organizer-text").hidden = !organizer.text;
     $("organizer-name").textContent = organizer.name;
 
     const phoneLink = $("organizer-phone");
