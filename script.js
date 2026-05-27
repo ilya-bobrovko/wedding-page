@@ -7,7 +7,6 @@
   async function init() {
     const content = await loadContent();
     renderContent(content);
-    setupVenueImage(content.venue);
     setupCountdown(content.countdown);
     setupReveal();
     showHeroImmediately();
@@ -22,26 +21,51 @@
   }
 
   function renderContent(data) {
-    const { couple, hero, venue, details, dressCode, schedule, guestProfile, wishes, organizer, footer } = data;
+    const {
+      couple,
+      hero,
+      countdown,
+      venue,
+      details,
+      dressCode,
+      schedule,
+      guestProfile,
+      wishes,
+      organizer,
+      footer,
+    } = data;
 
-    $("couple-names").textContent = `${couple.name1} и ${couple.name2}`;
+    // Hero — names stacked, with script ampersand
+    $("couple-name-1").textContent = couple.name1;
+    $("couple-name-2").textContent = couple.name2;
     $("hero-tagline").textContent = hero.tagline;
     $("hero-date").textContent = hero.dateDisplay;
 
-    $("countdown-label").textContent = data.countdown.label;
+    // Countdown
+    if (countdown.label) {
+      // Allow override but default is set in HTML
+      $("countdown-label").textContent = countdown.label.replace(/^До нашего праздника\s*/i, "").trim() || "осталось";
+    }
 
-    $("venue-title").textContent = venue.title || "Место проведения";
+    // Venue
+    $("venue-title").textContent = (venue.title || "Место проведения")
+      .replace(/^Место(\s+проведения)?$/i, "проведения");
     $("venue-name").textContent = venue.name;
     $("venue-address").textContent = venue.address;
-    $("venue-note").textContent = venue.note || "";
-    $("venue-note").hidden = !venue.note;
+    const noteEl = $("venue-note");
+    noteEl.textContent = venue.note || "";
+    noteEl.hidden = !venue.note;
 
     const mapsLink = $("venue-maps");
     mapsLink.href = venue.mapsUrl;
     $("venue-maps-text").textContent = venue.mapsButton;
 
+    const venueImg = $("venue-image");
+    venueImg.alt = venue.name;
+    if (venue.image) venueImg.src = venue.image;
+
+    // Details
     if (details) {
-      $("details-title").textContent = details.title || "Детали";
       $("details-text").textContent = details.text || "";
       const checkInEl = $("details-checkin");
       if (details.checkIn) {
@@ -55,7 +79,7 @@
       document.getElementById("details").hidden = true;
     }
 
-    $("dresscode-title").textContent = dressCode.title || "Дресс-код";
+    // Dress code
     $("dresscode-text").textContent = dressCode.text;
 
     const paletteEl = $("dresscode-palette");
@@ -76,49 +100,45 @@
       paletteEl.hidden = true;
     }
 
-    $("schedule-title").textContent = schedule.title;
-
+    // Schedule — vertical timeline
     $("schedule-list").replaceChildren(
       ...schedule.items.map((item) => {
         const li = document.createElement("li");
         li.className = "schedule__item";
-        const label = item.title
-          ? `<p class="schedule__label">${escapeHtml(item.title)}</p>`
-          : "";
         li.innerHTML = `
           <time class="schedule__time" datetime="${toDatetime(item.time)}">${escapeHtml(item.time)}</time>
-          ${label}
+          <span class="schedule__dot" aria-hidden="true"></span>
+          <p class="schedule__label">${escapeHtml(item.title || "")}</p>
         `;
         return li;
       })
     );
 
+    // Guest profile
     if (guestProfile) {
-      $("guest-profile-title").textContent = guestProfile.title || "Гостевой чат";
       $("guest-profile-text").textContent = guestProfile.text || "";
-
-      const guestProfileButton = $("guest-profile-button");
-      guestProfileButton.href = guestProfile.chatUrl || "#";
-      guestProfileButton.textContent = guestProfile.button || "Вступить в чат";
+      const btn = $("guest-profile-button");
+      btn.href = guestProfile.chatUrl || "#";
+      btn.textContent = guestProfile.button || "Вступить в чат";
       document.getElementById("guest-profile").hidden = false;
     } else {
       document.getElementById("guest-profile").hidden = true;
     }
 
-    $("wishes-title").textContent = wishes.title;
+    // Wishes — three columns
     $("wishes-list").replaceChildren(
       ...wishes.items.map((item) => {
-        const article = document.createElement("article");
-        article.className = "card wishes__item reveal";
-        article.innerHTML = `
+        const li = document.createElement("li");
+        li.className = "wishes__item reveal";
+        li.innerHTML = `
           <h3 class="wishes__heading">${escapeHtml(item.heading)}</h3>
           <p class="wishes__text">${escapeHtml(item.text)}</p>
         `;
-        return article;
+        return li;
       })
     );
 
-    $("organizer-title").textContent = organizer.title;
+    // Organizer
     $("organizer-text").textContent = organizer.text || "";
     $("organizer-text").hidden = !organizer.text;
     $("organizer-name").textContent = organizer.name;
@@ -131,46 +151,21 @@
     telegramLink.href = organizer.telegramUrl;
     telegramLink.textContent = organizer.telegram;
 
+    // Footer — monogram, date, sign-off
+    const m1 = (couple.name1 || "").trim().charAt(0);
+    const m2 = (couple.name2 || "").trim().charAt(0);
+    if (m1 && m2) $("footer-monogram").textContent = `${m1} & ${m2}`;
+    $("footer-date").textContent = hero.dateDisplay;
     $("footer-text").textContent = footer.text;
 
     document.title = `${couple.name1} и ${couple.name2} — ${hero.dateDisplay}`;
   }
 
-  function setupVenueImage(venue) {
-    const img = $("venue-image");
-    const fallback = $("venue-icon-fallback");
-    const icon = $("venue-icon");
-
-    img.alt = venue.name;
-
-    const showFallback = () => {
-      img.hidden = true;
-      fallback.hidden = false;
-      fallback.style.display = "";
-      icon.classList.remove("venue__icon--photo");
-    };
-
-    const showPhoto = () => {
-      img.hidden = false;
-      fallback.hidden = true;
-      fallback.style.display = "none";
-      icon.classList.add("venue__icon--photo");
-    };
-
-    img.addEventListener("load", showPhoto);
-    img.addEventListener("error", showFallback);
-
-    if (venue.image) {
-      img.src = venue.image;
-    } else {
-      showFallback();
-    }
-  }
-
   function setupCountdown(countdown) {
     countdownTarget = new Date(countdown.target);
     tickCountdown();
-    countdownTimer = setInterval(tickCountdown, 1000);
+    // Tick once a minute — no seconds shown, so no need for 1s timer
+    countdownTimer = setInterval(tickCountdown, 30 * 1000);
   }
 
   function tickCountdown() {
@@ -188,12 +183,10 @@
     const days = Math.floor(totalSeconds / 86400);
     const hours = Math.floor((totalSeconds % 86400) / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
 
     $("cd-days").textContent = String(days);
     $("cd-hours").textContent = String(hours).padStart(2, "0");
     $("cd-minutes").textContent = String(minutes).padStart(2, "0");
-    $("cd-seconds").textContent = String(seconds).padStart(2, "0");
   }
 
   function setupReveal() {

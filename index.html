@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -24,65 +24,54 @@
     </svg>
 
     <main class="page">
-      <header class="hero section" id="hero">
+      <header class="hero" id="hero">
         <div class="hero__content">
-          <p class="hero__eyebrow label-caps reveal">Свадьба</p>
-          <h1 class="hero__names reveal" id="couple-names"></h1>
-          <div class="ornament reveal" aria-hidden="true">
-            <span class="ornament__line"></span>
-            <img class="ornament__img" src="assets/leaf.png" alt="" width="80" height="80" />
-            <span class="ornament__line"></span>
-          </div>
+          <p class="hero__eyebrow label-caps reveal">Приглашаем на свадьбу</p>
+          <h1 class="hero__names reveal" id="couple-names">
+            <span class="hero__name" id="couple-name-1">Илья</span>
+            <span class="hero__amp" aria-hidden="true" style="margin: 4px 0px -30px">&amp;</span>
+            <span class="hero__name" id="couple-name-2">Арина</span>
+          </h1>
           <p class="hero__tagline reveal" id="hero-tagline"></p>
-          <p class="hero__date label-caps reveal" id="hero-date"></p>
+          <p class="hero__date label-caps reveal" id="hero-date" style="font-size: 16px"></p>
         </div>
       </header>
 
+      <!-- COUNTDOWN — cream band -->
       <section class="countdown section" id="countdown" aria-label="Обратный отсчёт">
         <div class="section-head reveal">
-          <h2 class="section-head__title label-caps" id="countdown-label"></h2>
+          <span class="section-head__eyebrow">До дня</span>
+          <h2 class="section-head__title" id="countdown-label">осталось</h2>
         </div>
         <div class="countdown__grid reveal" id="countdown-grid" role="timer" aria-live="polite">
-          <div class="card countdown__item">
+          <div class="countdown__item">
             <span class="countdown__value" id="cd-days">—</span>
-            <span class="countdown__unit">дня</span>
+            <span class="countdown__unit">дней</span>
           </div>
-          <div class="card countdown__item">
+          <div class="countdown__item">
             <span class="countdown__value" id="cd-hours">—</span>
             <span class="countdown__unit">часов</span>
           </div>
-          <div class="card countdown__item">
+          <div class="countdown__item">
             <span class="countdown__value" id="cd-minutes">—</span>
             <span class="countdown__unit">минут</span>
-          </div>
-          <div class="card countdown__item">
-            <span class="countdown__value" id="cd-seconds">—</span>
-            <span class="countdown__unit">секунд</span>
           </div>
         </div>
         <p class="countdown__done reveal" id="countdown-done" hidden>Мы уже празднуем — скоро увидимся!</p>
       </section>
 
-      <section class="venue section" id="venue" aria-labelledby="venue-title">
+      <!-- VENUE — tinted band, large logo -->
+      <section class="venue section section--tint" id="venue" aria-labelledby="venue-title">
         <div class="section-head reveal">
-          <h2 class="section-head__title label-caps" id="venue-title"></h2>
-          <div class="ornament ornament--sm" aria-hidden="true">
-            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
-          </div>
+          <span class="section-head__eyebrow">Место</span>
+          <h2 class="section-head__title" id="venue-title">проведения</h2>
         </div>
-        <article class="card venue__card reveal">
-          <div class="venue__icon" id="venue-icon">
-            <img class="venue__icon-img" id="venue-image" alt="" width="80" height="80" hidden />
-            <img
-              class="venue__icon-fallback"
-              id="venue-icon-fallback"
-              src="assets/leaf.png"
-              alt=""
-              width="40"
-              height="40"
-            />
+        <article class="venue__card reveal">
+          <div class="venue__media">
+            <img class="venue__media-img" id="venue-image" src="assets/hall-logo.png" alt="" />
           </div>
           <div class="venue__info">
+            <p class="venue__eyebrow label-caps">Усадьба</p>
             <h3 class="venue__name" id="venue-name"></h3>
             <p class="venue__address" id="venue-address"></p>
             <p class="venue__note" id="venue-note"></p>
@@ -94,89 +83,86 @@
         </article>
       </section>
 
+      <!-- DETAILS — cream band, no card -->
       <section class="details section" id="details" aria-labelledby="details-title">
         <div class="section-head reveal">
-          <h2 class="section-head__title label-caps" id="details-title"></h2>
-          <div class="ornament ornament--sm" aria-hidden="true">
-            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
-          </div>
+          <span class="section-head__eyebrow">Несколько</span>
+          <h2 class="section-head__title" id="details-title">деталей</h2>
         </div>
-        <div class="card details__card reveal">
+        <div class="details__body reveal">
           <p class="details__text" id="details-text"></p>
-          <p class="details__checkin" id="details-checkin"></p>
+          <p class="details__checkin" id="details-checkin" style="font-size: 24px; font-weight: 500"></p>
         </div>
       </section>
 
-      <section class="dresscode section" id="dresscode" aria-labelledby="dresscode-title">
+      <!-- DRESS CODE — tinted band -->
+      <section class="dresscode section section--tint" id="dresscode" aria-labelledby="dresscode-title">
         <div class="section-head reveal">
-          <h2 class="section-head__title label-caps" id="dresscode-title"></h2>
-          <div class="ornament ornament--sm" aria-hidden="true">
-            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
-          </div>
+          <span class="section-head__eyebrow">В одной</span>
+          <h2 class="section-head__title" id="dresscode-title">палитре</h2>
         </div>
-        <div class="card dresscode__card reveal">
+        <div class="dresscode__body reveal">
           <p class="dresscode__text" id="dresscode-text"></p>
           <ul class="dresscode__palette" id="dresscode-palette" role="list" aria-label="Цвета палитры"></ul>
         </div>
       </section>
 
+      <!-- SCHEDULE — cream band, vertical timeline -->
       <section class="schedule section" id="schedule" aria-labelledby="schedule-title">
         <div class="section-head reveal">
-          <h2 class="section-head__title label-caps" id="schedule-title"></h2>
-          <div class="ornament ornament--sm" aria-hidden="true">
-            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
-          </div>
+          <span class="section-head__eyebrow">Программа</span>
+          <h2 class="section-head__title" id="schedule-title">дня</h2>
         </div>
-        <div class="schedule__timeline reveal">
-          <span class="schedule__line" aria-hidden="true"></span>
-          <ol class="schedule__list" id="schedule-list"></ol>
-          <span class="schedule__line" aria-hidden="true"></span>
-        </div>
+        <ol class="schedule__list reveal" id="schedule-list"></ol>
       </section>
 
-      <section class="guest-profile section" id="guest-profile" aria-labelledby="guest-profile-title">
+      <!-- GUEST PROFILE — tinted band -->
+      <section class="guest-profile section section--tint" id="guest-profile" aria-labelledby="guest-profile-title">
         <div class="section-head reveal">
-          <h2 class="section-head__title label-caps" id="guest-profile-title"></h2>
-          <div class="ornament ornament--sm" aria-hidden="true">
-            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
-          </div>
+          <span class="section-head__eyebrow">Гостевой</span>
+          <h2 class="section-head__title" id="guest-profile-title">чат</h2>
         </div>
-        <div class="card guest-profile__card reveal">
+        <div class="guest-profile__body reveal">
           <p class="guest-profile__text" id="guest-profile-text"></p>
-          <a class="btn btn--ghost guest-profile__button" id="guest-profile-button" href="#" target="_blank" rel="noopener noreferrer"></a>
+          <a class="btn btn--ghost" id="guest-profile-button" href="#" target="_blank" rel="noopener noreferrer"></a>
         </div>
       </section>
 
+      <!-- WISHES — cream band, three columns -->
       <section class="wishes section" id="wishes" aria-labelledby="wishes-title">
         <div class="section-head reveal">
-          <h2 class="section-head__title label-caps" id="wishes-title"></h2>
-          <div class="ornament ornament--sm" aria-hidden="true">
-            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
-          </div>
+          <span class="section-head__eyebrow">Несколько слов</span>
+          <h2 class="section-head__title" id="wishes-title">от нас</h2>
         </div>
-        <div class="wishes__list" id="wishes-list"></div>
+        <ul class="wishes__list reveal" id="wishes-list"></ul>
       </section>
 
-      <section class="organizer section" id="organizer" aria-labelledby="organizer-title">
+      <!-- ORGANIZER — tinted band -->
+      <section class="organizer section section--tint" id="organizer" aria-labelledby="organizer-title">
         <div class="section-head reveal">
-          <h2 class="section-head__title label-caps" id="organizer-title"></h2>
-          <div class="ornament ornament--sm" aria-hidden="true">
-            <img class="ornament__img" src="assets/leaf.png" alt="" width="64" height="64" />
-          </div>
+          <span class="section-head__eyebrow">По всем</span>
+          <h2 class="section-head__title" id="organizer-title">вопросам</h2>
         </div>
-        <div class="card organizer__card reveal">
+        <div class="organizer__body reveal">
           <p class="organizer__text" id="organizer-text"></p>
           <p class="organizer__name" id="organizer-name"></p>
           <a class="organizer__link" id="organizer-phone" href="#"></a>
-          <a class="btn btn--ghost organizer__telegram" id="organizer-telegram" href="#" target="_blank" rel="noopener noreferrer"></a>
+          <div>
+            <a class="btn btn--ghost" id="organizer-telegram" href="#" target="_blank" rel="noopener noreferrer"></a>
+          </div>
         </div>
       </section>
 
-      <footer class="footer section">
+      <!-- FOOTER — closing monogram seal -->
+      <footer class="footer">
+        <div class="footer__seal reveal" aria-hidden="true" style="padding: 12px 0px 0px">
+          <span class="footer__seal-mono" id="footer-monogram">И &amp; А</span>
+        </div>
+        <p class="footer__date reveal" id="footer-date"></p>
         <p class="footer__text reveal" id="footer-text"></p>
       </footer>
     </main>
 
-    <script src="script.js?v=11" defer></script>
+    <script src="script.js?v=12" defer></script>
   </body>
 </html>
