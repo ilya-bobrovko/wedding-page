@@ -22,7 +22,7 @@
   }
 
   function renderContent(data) {
-    const { couple, hero, venue, dressCode, schedule, wishes, organizer, footer } = data;
+    const { couple, hero, venue, details, dressCode, schedule, wishes, organizer, footer } = data;
 
     $("couple-names").textContent = `${couple.name1} и ${couple.name2}`;
     $("hero-tagline").textContent = hero.tagline;
@@ -40,8 +40,41 @@
     mapsLink.href = venue.mapsUrl;
     $("venue-maps-text").textContent = venue.mapsButton;
 
+    if (details) {
+      $("details-title").textContent = details.title || "Детали";
+      $("details-text").textContent = details.text || "";
+      const checkInEl = $("details-checkin");
+      if (details.checkIn) {
+        checkInEl.textContent = details.checkIn;
+        checkInEl.hidden = false;
+      } else {
+        checkInEl.hidden = true;
+      }
+      document.getElementById("details").hidden = false;
+    } else {
+      document.getElementById("details").hidden = true;
+    }
+
     $("dresscode-title").textContent = dressCode.title || "Дресс-код";
     $("dresscode-text").textContent = dressCode.text;
+
+    const paletteEl = $("dresscode-palette");
+    if (dressCode.colors?.length) {
+      paletteEl.replaceChildren(
+        ...dressCode.colors.map((color) => {
+          const hex = typeof color === "string" ? color : color.hex;
+          const li = document.createElement("li");
+          li.className = "dresscode__swatch";
+          li.setAttribute("role", "listitem");
+          li.style.backgroundColor = hex;
+          li.setAttribute("aria-label", hex);
+          return li;
+        })
+      );
+      paletteEl.hidden = false;
+    } else {
+      paletteEl.hidden = true;
+    }
 
     $("schedule-title").textContent = schedule.title;
 

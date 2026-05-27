@@ -347,6 +347,66 @@ body {
   color: var(--olive-light);
 }
 
+@media (max-width: 36rem) {
+  .venue__card {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem 1.25rem 1.35rem;
+    text-align: center;
+  }
+
+  .venue__icon--photo {
+    width: 6.75rem;
+    height: 6.75rem;
+  }
+
+  .venue__info {
+    width: 100%;
+    text-align: center;
+  }
+
+  .venue__name {
+    font-size: 1.5rem;
+  }
+
+  .venue__address {
+    font-size: 1rem;
+  }
+
+  .venue__note {
+    margin-bottom: 1rem;
+  }
+
+  .venue__info .btn {
+    width: 100%;
+  }
+}
+
+/* Details */
+.details__card {
+  text-align: center;
+  padding: 1.6rem 1.75rem;
+}
+
+.details__text {
+  margin: 0;
+  max-width: 36rem;
+  margin-inline: auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.details__checkin {
+  margin: 1.25rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--olive-dark);
+}
+
 /* Dress code */
 .dresscode__card {
   text-align: center;
@@ -360,6 +420,33 @@ body {
   font-size: 1.1rem;
   line-height: 1.6;
   color: var(--text-soft);
+}
+
+.dresscode__palette {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.45rem, 2vw, 0.75rem);
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.dresscode__palette::-webkit-scrollbar {
+  display: none;
+}
+
+.dresscode__swatch {
+  flex: 0 0 auto;
+  width: clamp(2rem, 6vw, 2.85rem);
+  height: clamp(2rem, 6vw, 2.85rem);
+  margin: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(44, 48, 38, 0.12);
 }
 
 /* Buttons */
