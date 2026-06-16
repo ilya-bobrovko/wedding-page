@@ -539,6 +539,13 @@ body {
   color: var(--text-soft);
 }
 
+.wishes__link {
+  color: var(--olive-dark);
+  font-style: italic;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+
 @media (max-width: 44rem) {
   .wishes__list { grid-template-columns: 1fr; gap: 2.25rem; }
 }

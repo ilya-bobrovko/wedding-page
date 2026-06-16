@@ -130,9 +130,13 @@
       ...wishes.items.map((item) => {
         const li = document.createElement("li");
         li.className = "wishes__item reveal";
+        const link = item.linkUrl
+          ? `<a class="wishes__link" href="${escapeHtml(item.linkUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.linkText || "Подробнее")}</a>`
+          : "";
+        const text = `${escapeHtml(item.text)}${link ? ` ${link}.` : ""}`;
         li.innerHTML = `
           <h3 class="wishes__heading">${escapeHtml(item.heading)}</h3>
-          <p class="wishes__text">${escapeHtml(item.text)}</p>
+          <p class="wishes__text">${text}</p>
         `;
         return li;
       })
